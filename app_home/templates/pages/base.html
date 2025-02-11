@@ -21,20 +21,35 @@
                     <img src="{% static 'images/avatar.jpg' %}" class = "img-fluid", style="max-height: 150px">
                 </center>
             </div>
-            <div class="col-sm-10">
+            <div class="col-sm-9">
                 <center>
                     <h1>Blog lam tu Django</h1>
+                </center>
+            </div>
+            <div class="col-sm-1">
+                <center>
+                    {% if user.username %}
+                        <p>Xin chao, {{user.username}}</p>
+                        <form method="post" action="{% url 'logout' %}">
+                            {% csrf_token %}
+                            <button type="submit">Đăng xuất</button>
+                        </form>
+                        
+                    {% else %}
+                        <p><a href="{% url 'register' %}">Đăng ký</a></p>
+                        <p><a href="{% url 'login' %}">Đăng nhập</a></p>
+                    {% endif %}
                 </center>
             </div>
         </div>
         <br>
         <div class="row">
             <div class="col-sm-2">
-                <ul class="flex-column" style="background-color: #fff;">
-                    <li><a href="/home">Thong tin ca nhan</a></li>
-                    <li><a href="/blog">Blog</a></li>
-                    <li><a href="/home/contact">Lien he</a></li>
-                </ul>
+                <nav class="nav flex-column" style="background-color: #fff;">
+                    <a class="nav-link" href="/home">Thong tin ca nhan</a>
+                    <a class="nav-link" href="/blog">Blog</a></li>
+                    <a class="nav-link" href="/contact">Lien he</a>
+                </nav>
             </div>
             <div class="col-sm-10">
                 <div class="container-fluid">
